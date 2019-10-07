@@ -1,0 +1,44 @@
+{
+  "name": "transbank-sdk-node",
+  "version": "1.0.0",
+  "description": "Awesome package to use rest methods on transbank products",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha \"test/**/*.test.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/themakunga/transbank-sdk-nodejs.git"
+  },
+  "keywords": [
+    "transbank",
+    "payments",
+    "webpay",
+    "webpayplus",
+    "creditcard",
+    "debitcard"
+  ],
+  "author": "Nicolas Martinez V.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/themakunga/transbank-sdk-nodejs/issues"
+  },
+  "homepage": "https://github.com/themakunga/transbank-sdk-nodejs#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "schema-validator": "^3.3.1",
+    "simpl-schema": "^1.5.6"
+  },
+  "devDependencies": {
+    "axios-debug": "^0.0.4",
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.1"
+  }
+}
