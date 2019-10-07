@@ -7,8 +7,8 @@ module.exports = (opts) => {
             baseURL: opts.baseURL,
             headers: {
                 'content-type': 'application/json',
-                'Tbk-Api-Key-Id': opts.apiKey,
-                'Tbk-Api-Key-Secret': opts.commerceCode,
+                'Tbk-Api-Key-Id': opts.commerceCode,
+                'Tbk-Api-Key-Secret': opts.apiKey,
             },
         });
     }
