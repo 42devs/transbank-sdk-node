@@ -1,9 +1,9 @@
 const axios = require('axios');
+require('axios-debug-log');
 
 module.exports = (opts) => (!('commerce' in opts) ? axios.create({
   baseURL: opts.baseURL,
   headers: {
-    Accept: 'application/json',
     'Content-Type': 'application/json',
     'Tbk-Api-Key-Id': opts.commerceCode,
     'Tbk-Api-Key-Secret': opts.apiKey,

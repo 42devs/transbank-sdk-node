@@ -8,7 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha \"test/**/*.test.js\""
+    "test": "mocha \"test/**/*.test.js\"",
+    "devtest": "DEBUG=axios yarn run test"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
   "homepage": "https://github.com/themakunga/transbank-sdk-nodejs#readme",
   "dependencies": {
     "axios": "^0.19.0",
+    "axios-debug-log": "^0.6.2",
     "schema-validator": "^3.3.1"
   },
   "devDependencies": {
