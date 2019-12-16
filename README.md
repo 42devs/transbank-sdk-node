@@ -7,7 +7,7 @@ Awesome nodejs SDK
 
 - nodejs v10
 
-## Dependencies: 
+## Dependencies:
 
 - [Axios](https://github.com/axios/axios)
 
@@ -21,14 +21,13 @@ Awesome nodejs SDK
 is like a roadmap, but priorized by needings
 
 - [x] Webpay Plus
-- [ ] Webpay Plus Mall
-- [ ] Patpass
+- [X] Webpay Plus Mall
 - [ ] Patpass Commerce
 - [ ] Patpass by Webpay
 - [ ] Complete Transaction
 - [ ] Complete Transaction Mall
 - [ ] Onepay
-- [ ] Oneclick 
+- [X] Oneclick
 - [ ] Oneclick Mall
 - [ ] Webpay Legacy SOAP* (this is more like a maybe)
 
