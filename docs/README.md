@@ -35,4 +35,5 @@ Sadly because this is a payment gateway we can't make automated test because you
 
 The following products are available in this SDK
 
-[WEBPAY PLUS](./webpay)
+- [Webpay Plus](./webpay)
+- [Webpay Plus Mall](./webpay#mall)
