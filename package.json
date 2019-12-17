@@ -11,7 +11,7 @@
     "test": "echo \"currently there's not test here; exit 0\"",
     "devtest": "DEBUG=axios yarn run test",
     "build": "webpack --mode production",
-    "publish": "np"
+    "pub": "np"
   },
   "repository": {
     "type": "git",
