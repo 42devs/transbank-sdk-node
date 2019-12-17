@@ -1,0 +1,9 @@
+lib/
+.editorconfig
+.env.example
+.eslintrc.js
+node_modules
+docu.txt
+pull_request*.md
+webpack.config.js
+yarn.lock
