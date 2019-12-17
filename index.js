@@ -1,4 +1,4 @@
-const webpayPlus = require('./lib/webpayPlus');
+const webpayPlus = require('./lib');
 
 module.exports = {
   webpayPlus,
