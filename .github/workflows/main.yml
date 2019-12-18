@@ -1,0 +1,29 @@
+name: CI
+
+on: 
+  push:
+    branches: 
+      - develop
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Nodejs
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install dependencies
+      run: yarn install
+    - name: Run Tests
+      run: yarn run test
+    - name: Build to publish
+      run: yarn run build
+    - name: Publish to NPM
+      uses: pedromcunha/npm-publisher@0.0.3
+      with:
+        packageName: transbank-sdk-node
+        access: public
