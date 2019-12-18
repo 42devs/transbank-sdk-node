@@ -5,7 +5,7 @@ Transbank SDK nodejs
 ![travisci](https://img.shields.io/travis/themakunga/transbank-sdk-nodejs/master )
 ![size](https://img.shields.io/github/languages/code-size/themakunga/transbank-sdk-nodejs)
 
-Awesome nodejs SDK if you want to read the docs we have some [here](./docs)
+Awesome nodejs SDK if you want to read the docs we have some [here](https://github.com/themakunga/transbank-sdk-node-docs#readme)
 
 ## Requirements
 
