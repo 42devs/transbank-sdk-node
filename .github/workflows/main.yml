@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - develop
+      - master
 
 jobs:
   build:
@@ -24,8 +24,3 @@ jobs:
       run: yarn run build
     - name: Publish to NPM
       run: npm publish
-    - name: Merge to master
-      run: |
-        git checkout master
-        git merge develop
-        git push --no-ff
