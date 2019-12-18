@@ -1,8 +1,8 @@
 name: CI
 
-on: 
+on:
   push:
-    branches: 
+    branches:
       - develop
 
 jobs:
@@ -23,7 +23,9 @@ jobs:
     - name: Build to publish
       run: yarn run build
     - name: Publish to NPM
-      uses: pedromcunha/npm-publisher@0.0.3
-      with:
-        packageName: transbank-sdk-node
-        access: public
+      run: npm publish
+    - name: Merge to master
+      run: |
+        git checkout master
+        git merge develop
+        git push --no-ff
