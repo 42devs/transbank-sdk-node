@@ -16,8 +16,10 @@ Awesome NodeJs Transbank SDK
 I've to do a work in [vueJS](https://vuejs.org/) to a client who need to use `transbank webpay` and trying to get a payment method. The people doesn't have time neither money to use other payment gateway. So I've to use the endpoint, now I'm making the full sdk for you to use.
 
 # What do I need?
+
 ## Technically?
-  you need a `.env` file to use it with the next mandatory params to use it in production, if you are using this for testing or develop, you can just use the SDK without them.
+
+you need a `.env` file to use it with the next mandatory params to use it in production, if you are using this for testing or develop, you can just use the SDK without them.
 
 ### .env
 ```bash
@@ -27,7 +29,7 @@ TRANSBANK_WEBPAY_API_KEY=aqwerty123456987
 *this is only a test, in all examples there're gonna be the necesary params*
 
 ## Commercially?
-You need to contact to transbank  and pray- to register your commerce and wait for the params to use in production. Sometimes is slow to get, but when you have it you can use the commerce without any problem.
+You need to contact to transbank _and pray_ to register your commerce and wait for the params to use in production. Sometimes is slow to get, but when you have it you can use the commerce without any problem.
 
 
 # Products

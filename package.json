@@ -1,7 +1,7 @@
 {
   "name": "transbank-sdk-node",
   "version": "1.0.3",
-  "description": "Awesome package to use rest methods on transbank products",
+  "description": "Awesome package to use REST methods on transbank products",
   "main": "dist/index.js",
   "directories": {
     "lib": "lib",
@@ -19,18 +19,23 @@
   },
   "keywords": [
     "transbank",
+    "tbk",
     "payments",
     "webpay",
     "webpayplus",
+    "oneclick",
+    "onepay",
     "creditcard",
-    "debitcard"
+    "debitcard",
+    "gateway",
+    "payment gateway"
   ],
-  "author": "Nicolas Martinez V.",
+  "author": "Nicolas Martinez V. <nmartinezv@icloud.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/themakunga/transbank-sdk-nodejs/issues"
+    "url": "https://github.com/themakunga/transbank-sdk-node-docs/issues"
   },
-  "homepage": "https://github.com/themakunga/transbank-sdk-nodejs#readme",
+  "homepage": "https://github.com/themakunga/transbank-sdk-node-docs#readme",
   "dependencies": {
     "axios": "^0.19.0",
     "simpl-schema": "^1.5.6"

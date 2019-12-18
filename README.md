@@ -1,5 +1,6 @@
 Transbank SDK nodejs
 ---
+[![NPM](https://nodei.co/npm/transbank-sdk-node.png)](https://nodei.co/npm/transbank-sdk-node/)
 
 ![travisci](https://img.shields.io/travis/themakunga/transbank-sdk-nodejs/master )
 ![size](https://img.shields.io/github/languages/code-size/themakunga/transbank-sdk-nodejs)

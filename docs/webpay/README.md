@@ -7,7 +7,7 @@
 		- [commit transaction](#commit-transaction)
 		- [status transaction](#status-transaction)
 		- [refund transaction](#refund-transaction)
-		- [defered capture](#defered-capture)
+		- [deferred capture](#deferred-capture)
 - [Webpay Plus Mall](#webpay-plus-mall)
 	- [environment](#environment)
 	- [how to use](#how-to-use)
@@ -15,7 +15,7 @@
 		- [commit transaction](#commit-transaction)
 		- [status transaction](#status-transaction)
 		- [refund transaction](#refund-transaction)
-		- [defered capture](#defered-capture)
+		- [deferred capture](#deferred-capture)
 
 <!-- /TOC -->
 
@@ -33,7 +33,7 @@
 
 ### refund transaction
 
-### defered capture
+### deferred capture
 
 # Webpay Plus Mall
 
@@ -49,4 +49,4 @@
 
 ### refund transaction
 
-### defered capture
+### deferred capture
