@@ -7,3 +7,4 @@ docu.txt
 pull_request*.md
 webpack.config.js
 yarn.lock
+index.js
