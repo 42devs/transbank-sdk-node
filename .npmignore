@@ -8,3 +8,6 @@ pull_request*.md
 webpack.config.js
 yarn.lock
 index.js
+update_docs
+.np-config.js
+.npmrc
