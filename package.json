@@ -11,6 +11,7 @@
     "test": "echo \"currently there's not test here; exit 0\"",
     "devtest": "DEBUG=axios yarn run test",
     "build": "webpack --mode production",
+    "lint": "eslint --fix *.js --ignore-path .gitignore",
     "pub": "np"
   },
   "repository": {
