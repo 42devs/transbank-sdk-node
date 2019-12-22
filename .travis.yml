@@ -1,6 +1,8 @@
 languaje: node_js
 node_js:
-  - "latest"
+  - "10"
+  - "12"
+  - "13"
 cache: yarn
 install:
   - yarn install

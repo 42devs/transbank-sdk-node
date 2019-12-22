@@ -2,8 +2,9 @@ Transbank SDK nodejs
 ---
 [![NPM](https://nodei.co/npm/transbank-sdk-node.png)](https://nodei.co/npm/transbank-sdk-node/)
 
-![travisci](https://img.shields.io/travis/themakunga/transbank-sdk-nodejs/master )
-![size](https://img.shields.io/github/languages/code-size/themakunga/transbank-sdk-nodejs)
+[![Build Status](https://travis-ci.org/themakunga/transbank-sdk-node.svg?branch=master)](https://travis-ci.org/themakunga/transbank-sdk-node)
+![size](https://img.shields.io/github/languages/code-size/themakunga/transbank-sdk-node)
+![npmdownload](https://img.shields.io/npm/dw/themakunga/transbank-sdk-node)
 
 Awesome nodejs SDK if you want to read the docs we have some [here](https://github.com/themakunga/transbank-sdk-node-docs#readme)
 
