@@ -20,7 +20,5 @@ jobs:
       run: yarn install
     - name: Run Tests
       run: yarn run test
-    - name: Build to publish
-      run: yarn run build
     - name: Publish to NPM
       run: npm publish
