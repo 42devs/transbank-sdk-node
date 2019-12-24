@@ -2,7 +2,7 @@
   "name": "transbank-sdk-node",
   "version": "1.0.9",
   "description": "Awesome package to use REST methods on transbank products",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -10,9 +10,7 @@
   "scripts": {
     "test": "echo \"currently there's not test here; exit 0\"",
     "devtest": "DEBUG=axios yarn run test",
-    "build": "webpack --mode production",
-    "lint": "eslint --fix *.js --ignore-path .gitignore",
-    "pub": "np"
+    "lint": "eslint --fix *.js --ignore-path .gitignore"
   },
   "repository": {
     "type": "git",
@@ -39,16 +37,11 @@
   "homepage": "https://github.com/themakunga/transbank-sdk-node#readme",
   "dependencies": {
     "axios": "^0.19.0",
-    "simpl-schema": "^1.5.6"
+    "schema-object": "^4.0.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "babel-loader": "^8.0.6",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "np": "^5.2.1",
-    "webpack": "^4.41.3",
-    "webpack-cli": "^3.3.10"
+    "eslint-plugin-import": "^2.18.2"
   }
 }

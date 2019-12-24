@@ -1,8 +1,6 @@
 languaje: node_js
 node_js:
   - "10"
-  - "12"
-  - "13"
 cache: yarn
 install:
   - yarn install
@@ -13,12 +11,19 @@ jobs:
         - yarn lint
         - yarn test
         - yarn build
-    - stage: npm release
+    - stage: NPM Release
       script: yarn build
       deploy:
         provider: npm
         email: '$NPM_EMAIL'
         api_key: '$NPM_TOKEN'
+        skip_cleanup: true
+        on:
+          tags: true
+    - stage: Github Release
+      deploy:
+        provider: releases
+        api_key: $GITHUB_OAUTH_TOKEN
         skip_cleanup: true
         on:
           tags: true

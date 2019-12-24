@@ -4,7 +4,8 @@ Transbank SDK nodejs
 
 [![Build Status](https://travis-ci.org/themakunga/transbank-sdk-node.svg?branch=master)](https://travis-ci.org/themakunga/transbank-sdk-node)
 ![size](https://img.shields.io/github/languages/code-size/themakunga/transbank-sdk-node)
-![npmdownload](https://img.shields.io/npm/dw/themakunga/transbank-sdk-node)
+
+![npm](https://img.shields.io/npm/dw/transbank-sdk-node)
 
 Awesome nodejs SDK if you want to read the docs we have some [here](https://github.com/themakunga/transbank-sdk-node-docs#readme)
 
@@ -32,7 +33,7 @@ is like a roadmap, but priorized by needings
 - [ ] Complete Transaction
 - [ ] Complete Transaction Mall
 - [ ] Onepay
-- [X] Oneclick
+- [ ] Oneclick
 - [ ] Oneclick Mall
 - [ ] Webpay Legacy SOAP* (this is more like a maybe)
 - [ ] DOCS. yes because is pretty sad to go to another page just to get lost trying to use de docs
