@@ -6,9 +6,8 @@ install:
   - yarn install
 jobs:
   include:
-    - stage: Test and Build
+    - stage: Test
       script:
-        - yarn lint
         - yarn test
     - stage: NPM Release
       deploy:
