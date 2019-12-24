@@ -10,9 +10,7 @@ jobs:
       script:
         - yarn lint
         - yarn test
-        - yarn build
     - stage: NPM Release
-      script: yarn build
       deploy:
         provider: npm
         email: '$NPM_EMAIL'
