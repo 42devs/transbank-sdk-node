@@ -1,6 +1,6 @@
 {
   "name": "transbank-sdk-node",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Awesome package to use REST methods on transbank products",
   "main": "lib/index.js",
   "directories": {
