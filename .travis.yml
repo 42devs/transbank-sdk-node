@@ -16,14 +16,14 @@ jobs:
         api_key: '$NPM_TOKEN'
         skip_cleanup: true
         on:
-          tags: true
+          tags: false
     - stage: Github Release
       deploy:
         provider: releases
         api_key: $GITHUB_OAUTH_TOKEN
         skip_cleanup: true
         on:
-          tags: true
+          tags: false
 branches:
   only:
     - master
