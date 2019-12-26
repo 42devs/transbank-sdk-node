@@ -43,5 +43,14 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-stage"
+  },
+  "lint-stage": {
+    "*.js": [
+      "eslint --fix *.js --ignore-path .gitignore",
+      "git add"
+    ]
   }
 }
