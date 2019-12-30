@@ -8,10 +8,20 @@
     "test": "test"
   },
   "scripts": {
+    "prebuild": "rimraf dist",
     "test": "echo \"currently there's not test here; exit 0\"",
     "devtest": "DEBUG=axios yarn run test",
     "lint": "eslint --fix *.js --ignore-path .gitignore"
   },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "files": [
+    "lib",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/themakunga/transbank-sdk-nodejs.git"
@@ -40,9 +50,13 @@
     "schema-object": "^4.0.11"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "rimraf": "^3.0.0",
+    "webpack": "^4.41.4"
   },
   "gitHooks": {
     "pre-commit": "lint-stage"
