@@ -1,6 +1,6 @@
 languaje: node_js
 node_js:
-  - "10"
+  - latest/*
 cache: yarn
 install:
   - yarn install
@@ -20,11 +20,10 @@ jobs:
     - stage: Github Release
       deploy:
         provider: releases
-        api_key: $GITHUB_OAUTH_TOKEN
+        api_key: '$GITHUB_OAUTH_TOKEN'
         skip_cleanup: true
         on:
           tags: false
 branches:
   only:
     - master
-    - /^v[0-9]+.*$/
