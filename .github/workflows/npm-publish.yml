@@ -1,15 +1,27 @@
-on: push
+name: release
+
+on:
+  push:
+    branches:
+      - release
 
 jobs:
-  publish:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: tool3/bump@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          unrelated: true
+
+  publisher:
+    needs: tag
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: tool3/publisher@v1
         with:
-          node-version: 10
-      - run: npm install
-      - run: npm test
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN_PUBLISH }}
+          npm_token: ${{ secrets.NPM_TOKEN_PUBLISH }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          scope: "themakunga"
