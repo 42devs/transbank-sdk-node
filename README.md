@@ -2,7 +2,6 @@ Transbank SDK nodejs
 ---
 [![NPM](https://nodei.co/npm/transbank-sdk-node.png)](https://nodei.co/npm/transbank-sdk-node/)
 
-[![Build Status](https://travis-ci.org/themakunga/transbank-sdk-node.svg?branch=master)](https://travis-ci.org/themakunga/transbank-sdk-node)
 ![size](https://img.shields.io/github/languages/code-size/themakunga/transbank-sdk-node)
 
 ![npm](https://img.shields.io/npm/dw/transbank-sdk-node)
