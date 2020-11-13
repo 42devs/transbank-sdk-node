@@ -1,9 +1,6 @@
 .editorconfig
-.env.example
 .eslintrc.js
 node_modules
-docu.txt
 pull_request*.md
 yarn.lock
-update_docs
 .npmrc
