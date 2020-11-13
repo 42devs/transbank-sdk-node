@@ -1,5 +1,5 @@
 {
-  "name": "transbank-sdk-node",
+  "name": "themakunga/transbank-sdk-node",
   "version": "1.1.0",
   "description": "Awesome package to use REST methods on transbank products",
   "main": "lib/index.js",
