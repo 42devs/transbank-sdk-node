@@ -25,8 +25,8 @@ Transbank SDK nodejs
 install using `npm` or `yarn`
 
 ```bash
-npm install themakunga/transbank-sdk-node
-yarn add themakunga/transbank-sdk-node
+npm install transbank-sdk-node
+yarn add transbank-sdk-node
 ```
 
 ## Transacción Normal
@@ -40,7 +40,7 @@ const transaction = new NormalTransaction.Transaction(
     commerceCode,
 )
 const transaction = new NormalTransaction(
-  
+
 );
 
 const createTransaction = async (buyOrder, sessionId, amount, returnUrl) => {
@@ -58,3 +58,17 @@ const createTransaction = async (buyOrder, sessionId, amount, returnUrl) => {
   }
 }
 ```
+
+
+## Roadmap
+
+- [ ] Mall Transaction
+- [ ] One Click
+  - [ ] One Click Mall
+- [ ] Full transaction
+  - [ ] Full transaction Mall
+- [ ] One Pay
+- [ ] PatPass
+  - [ ] Patpass Comercio
+  - [ ] Patpass by Webpay
+- [ ] Update docs
