@@ -62,5 +62,8 @@
       "eslint --fix *.js --ignore-path .gitignore",
       "git add"
     ]
+  },
+  "dependencies": {
+    "minimist": "^0.2.1"
   }
 }
