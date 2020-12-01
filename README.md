@@ -3,9 +3,8 @@ Transbank SDK nodejs
 [![NPM](https://nodei.co/npm/transbank-sdk-node.png)](https://nodei.co/npm/transbank-sdk-node/)
 
 ![size](https://img.shields.io/github/languages/code-size/themakunga/transbank-sdk-node)
-
 ![npm](https://img.shields.io/npm/dw/transbank-sdk-node)
-
+![release deploy](https://github.com/themakunga/transbank-sdk-node/workflows/release%20deploy/badge.svg)
 
 # Requirements
 
