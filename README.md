@@ -2,40 +2,59 @@ Transbank SDK nodejs
 ---
 [![NPM](https://nodei.co/npm/transbank-sdk-node.png)](https://nodei.co/npm/transbank-sdk-node/)
 
-[![Build Status](https://travis-ci.org/themakunga/transbank-sdk-node.svg?branch=master)](https://travis-ci.org/themakunga/transbank-sdk-node)
 ![size](https://img.shields.io/github/languages/code-size/themakunga/transbank-sdk-node)
 
 ![npm](https://img.shields.io/npm/dw/transbank-sdk-node)
 
-Awesome nodejs SDK if you want to read the docs we have some [here](https://github.com/themakunga/transbank-sdk-node-docs#readme)
 
-## Requirements
+# Requirements
 
-- nodejs v10
+- nodejs lts
 
 ## Dependencies:
 
-- [Axios](https://github.com/axios/axios)
+- **No external libs dependencies!!!**
 
 ## Dev Dependencies:
 
 - Eslint
 - eslint-config-airbnb-base
 
+# Getting Started
 
-## TODO
-is like a roadmap, but priorized by needings
+install using `npm` or `yarn`
 
-- [x] Webpay Plus
-- [X] Webpay Plus Mall
-- [ ] Patpass Commerce
-- [ ] Patpass by Webpay
-- [ ] Complete Transaction
-- [ ] Complete Transaction Mall
-- [ ] Onepay
-- [ ] Oneclick
-- [ ] Oneclick Mall
-- [ ] Webpay Legacy SOAP* (this is more like a maybe)
-- [ ] DOCS. yes because is pretty sad to go to another page just to get lost trying to use de docs
+```bash
+npm install themakunga/transbank-sdk-node
+yarn add themakunga/transbank-sdk-node
+```
 
-in the future will be a version in TypeScript
+## Transacción Normal
+
+```javascript
+const NormalTransaction = require('transbank-sdk-node');
+
+const transaction = new NormalTransaction.Transaction(
+    integrationType, // test, prod, mock
+    apiKey,
+    commerceCode,
+)
+const transaction = new NormalTransaction(
+  
+);
+
+const createTransaction = async (buyOrder, sessionId, amount, returnUrl) => {
+  try {
+    const response = await transaction.create(
+      buyOrder,
+      sessionId,
+      amount,
+      returnUrl
+    );
+
+    return response;
+  } catch (e) {
+    // handle http errors
+  }
+}
+```
