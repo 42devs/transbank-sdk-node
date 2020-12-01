@@ -32,12 +32,15 @@ yarn add themakunga/transbank-sdk-node
 ## Transacción Normal
 
 ```javascript
-const { NormalTransaction } = require('transbank-sdk-node');
+const NormalTransaction = require('transbank-sdk-node');
 
+const transaction = new NormalTransaction.Transaction(
+    integrationType, // test, prod, mock
+    apiKey,
+    commerceCode,
+)
 const transaction = new NormalTransaction(
-  integrationType, // test, prod, mock
-  apiKey,
-  commerceCode,
+  
 );
 
 const createTransaction = async (buyOrder, sessionId, amount, returnUrl) => {
