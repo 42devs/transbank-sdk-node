@@ -1,10 +1,25 @@
 languaje: node_js
+os: linux
 node_js:
-  - "node"
-deploy:
-  provider: npm
-  email: $NPM_EMAIL
-  api_key: $NPM_TOKEN
-  on:
-    tags: true
-  
+  - node
+cache: npm
+install:
+  - npm install
+jobs:
+  include:
+    - stage: test
+      script:
+        - npm run test
+    - stage: npm publish
+      before_script:
+        - echo //registry.npmjs.org/:_authToken=$NPM_TOKEN > .npmrc
+      deploy:
+        provider: npm
+        email: $NPM_EMAIL
+        api_key: $NPM_TOKEN
+        skip_cleanup: true
+        on:
+          tags: true
+brances:
+  - master
+  - /^v[0-9]+.*$/
