@@ -4,7 +4,7 @@ Transbank SDK nodejs
 
 ![size](https://img.shields.io/github/languages/code-size/themakunga/transbank-sdk-node)
 ![npm](https://img.shields.io/npm/dw/transbank-sdk-node)
-![release deploy](https://github.com/themakunga/transbank-sdk-node/workflows/release%20deploy/badge.svg)
+[![Build Status](https://travis-ci.com/themakunga/transbank-sdk-node.svg?branch=master)](https://travis-ci.com/themakunga/transbank-sdk-node)
 
 # Requirements
 
@@ -31,16 +31,13 @@ yarn add transbank-sdk-node
 ## Transacción Normal
 
 ```javascript
-const NormalTransaction = require('transbank-sdk-node');
+const { Transaction } = require('transbank-sdk-node');
 
-const transaction = new NormalTransaction.Transaction(
+const transaction = new Transaction(
     integrationType, // test, prod, mock
     apiKey,
     commerceCode,
 )
-const transaction = new NormalTransaction(
-
-);
 
 const createTransaction = async (buyOrder, sessionId, amount, returnUrl) => {
   try {
@@ -58,10 +55,12 @@ const createTransaction = async (buyOrder, sessionId, amount, returnUrl) => {
 }
 ```
 
+you can read the other methods at [docs](./docs)
 
 ## Roadmap
 
-- [ ] Mall Transaction
+- [x] Transaction
+  - [x] Mall Transaction
 - [ ] One Click
   - [ ] One Click Mall
 - [ ] Full transaction
