@@ -1,0 +1,77 @@
+stages:
+  - install
+  - test
+  - deploy
+  - gitregistry
+
+install:lts
+  stage: install
+  image: node:lts
+  cache:
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR-lts
+    paths:
+      - node_modules/
+  script:
+    - yarn install
+  only:
+    - develop
+
+install:current
+  stage: install
+  image: node:current
+  cache:
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR-current
+    paths:
+      - node_modules/
+  script:
+    - yarn install
+  only:
+    - develop
+    - master
+    - branches
+    - tags
+
+test:lts
+  stage: test
+  image: node:lts
+  cache:
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR-lts
+    paths:
+      - node_modules/
+    policy: pull
+  script:
+    - yarn test
+  only:
+    - develop
+
+test:current
+  stage: test
+  image: node:current
+  cache:
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR-current
+    paths:
+      - node_modules/
+    policy: pull
+  script:
+    - yarn test
+  only:
+    - develop
+    - master
+    - branches
+    - tags
+
+deploy:npm
+  stage: deploy
+  image: node:current
+  cache:
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR-current
+    paths:
+      - node_modules/
+    policy: pull
+  before_script:
+    - yarn build
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
+  script:
+    - npm publish
+  only:
+    - tags
