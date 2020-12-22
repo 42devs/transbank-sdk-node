@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "echo \"currently there's not test here; exit 0\"",
-    "lint": "eslint --fix *.js --ignore-path .gitignore"
+    "lint": "eslint --ext .js --ignore-path .gitignore ."
   },
   "files": [
     "lib",
