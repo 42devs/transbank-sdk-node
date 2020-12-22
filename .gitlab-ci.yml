@@ -59,6 +59,15 @@ test-current:
     - branches
     - tags
 
+linter:
+  stage: test
+  image: node:current
+  cache:
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR-current
+    paths:
+      - node_modules/
+    policy: pull
+
 deploy-npm:
   stage: deploy
   image: node:current
@@ -68,7 +77,6 @@ deploy-npm:
       - node_modules/
     policy: pull
   before_script:
-    - yarn build
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
   script:
     - npm publish

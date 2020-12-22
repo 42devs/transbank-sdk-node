@@ -4,7 +4,7 @@ Transbank SDK nodejs
 
 ![size](https://img.shields.io/github/languages/code-size/themakunga/transbank-sdk-node)
 ![npm](https://img.shields.io/npm/dw/transbank-sdk-node)
-[![Build Status](https://travis-ci.com/themakunga/transbank-sdk-node.svg?branch=master)](https://travis-ci.com/themakunga/transbank-sdk-node)
+
 
 # Requirements
 
