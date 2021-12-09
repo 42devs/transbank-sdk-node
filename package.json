@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/themakunga/transbank-sdk-node.git"
+    "url": "git@github.com:42devs/transbank-sdk-node.git"
   },
   "publishConfig": {
     "access": "public"
@@ -43,9 +43,9 @@
   "author": "Nicolas Martinez V. <nmartinezv@icloud.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/themakunga/transbank-sdk-node/issues"
+    "url": "https://github.com/42devs/transbank-sdk-node/issues"
   },
-  "homepage": "https://github.com/themakunga/transbank-sdk-node#readme",
+  "homepage": "https://github.com/42devs/transbank-sdk-node#readme",
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
