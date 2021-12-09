@@ -1,5 +1,5 @@
 .editorconfig
-.eslintrc.js
+.eslintrc.yml
 node_modules
 pull_request*.md
 yarn.lock
