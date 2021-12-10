@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import * as http from 'https';
 import {
   IRequest, IResponse, IErrorResponse,
@@ -9,22 +10,23 @@ export async function request(r: IRequest): Promise<IResponse|IErrorResponse> {
       method: r.method,
       headers: { ...r.headers },
       timeout: 1000,
+      path: r.path,
     };
     return new Promise((resolve, reject) => {
-      const req = http.request(options, (res) => {
+      const req = http.request(r.url, options, (res) => {
         if (res.statusCode! > 299) {
           return reject(new Error(`HTTP status code ${res.statusCode}`));
         }
         const body: Buffer[] = [];
         res.on('data', (chunk) => body.push(chunk));
         res.on('end', () => {
-          const data = Buffer.concat(body).toJSON();
+          const data = JSON.parse(Buffer.concat(body).toString());
+          console.log(data);
           return resolve({
             code: res.statusCode!,
             data,
           });
         });
-        return reject(new Error('Could not complete the request'));
       });
       req.on('error', (err) => {
         reject(err);

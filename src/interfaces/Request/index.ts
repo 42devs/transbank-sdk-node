@@ -3,7 +3,8 @@ import { IHeaders } from '~/interfaces/Headers';
 
 export interface IRequest {
   method: 'post'|'get'|'put'|'delete'|'patch';
-  path: string;
-  headers: IHeaders,
+  path?: string;
+  headers?: IHeaders,
   data?: ICaptureRequestData
+  url: string;
 }
