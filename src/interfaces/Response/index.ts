@@ -1,4 +1,4 @@
 export interface IResponse {
-  data?: any;
   code: number;
+  data?: any;
 }
