@@ -13,8 +13,8 @@ describe('Base Request Handler', () => {
         ...basePayload,
         path: '/get',
       };
-      const { code, data } = await request(payload) as IResponse;
-      expect(code).toBe(200);
+      const { status, data } = await request(payload) as IResponse;
+      expect(status).toBe(200);
       expect(data).toBeDefined();
     });
     it('404 - Not Found', async () => {
@@ -24,7 +24,7 @@ describe('Base Request Handler', () => {
       };
 
       const c = await request(payload) as IErrorResponse;
-      expect(c.code).toBe(404);
+      expect(c.status).toBe(404);
     });
     it('408 - Request Timeout', async () => {
       const payload: IRequest = {
@@ -34,7 +34,7 @@ describe('Base Request Handler', () => {
       };
 
       const c = await request(payload) as IErrorResponse;
-      expect(c.code).toBe(408);
+      expect(c.status).toBe(408);
     });
   });
   describe('POST method', () => {
@@ -43,12 +43,12 @@ describe('Base Request Handler', () => {
         ...basePayload,
         path: '/post',
         method: 'post',
-        data: {
+        body: {
           test: 'ok',
         },
       };
-      const { code, data } = await request(payload) as IResponse;
-      expect(code).toBe(200);
+      const { status, data } = await request(payload) as IResponse;
+      expect(status).toBe(200);
       expect(data).toBeDefined();
     });
     it('404 - Not Found', async () => {
@@ -56,13 +56,13 @@ describe('Base Request Handler', () => {
         ...basePayload,
         path: '/status/404',
         method: 'post',
-        data: {
+        body: {
           test: 'ok',
         },
       };
 
       const c = await request(payload) as IErrorResponse;
-      expect(c.code).toBe(404);
+      expect(c.status).toBe(404);
     });
 
     it('408 - Request Timeout', async () => {
@@ -71,13 +71,13 @@ describe('Base Request Handler', () => {
         path: '/post',
         method: 'post',
         timeout: 10,
-        data: {
+        body: {
           test: 'ok',
         },
       };
 
       const c = await request(payload) as IErrorResponse;
-      expect(c.code).toBe(408);
+      expect(c.status).toBe(408);
     });
   });
 });

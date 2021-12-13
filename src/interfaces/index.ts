@@ -3,6 +3,7 @@ import { IResponse } from './Response';
 import { IHeaders } from './Headers';
 import { IOptions } from './Options';
 import { IErrorResponse } from './Error';
+import { ITransactionCreateResponse } from './Response/transactionCreate';
 
 export {
   IRequest,
@@ -10,4 +11,5 @@ export {
   IHeaders,
   IOptions,
   IErrorResponse,
+  ITransactionCreateResponse,
 };
