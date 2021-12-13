@@ -1,4 +1,6 @@
+import { ITransactionCreateResponse } from './transactionCreate';
+
 export interface IResponse {
-  code: number;
-  data?: any;
+  status: number;
+  data: any | ITransactionCreateResponse;
 }
