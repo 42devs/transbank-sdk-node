@@ -1,58 +1,48 @@
 /* eslint-disable consistent-return */
-import * as http from 'https';
+import axios, { AxiosError, AxiosRequestConfig as RequestConfig } from 'axios';
 import {
   IRequest, IResponse, IErrorResponse,
 } from '~/interfaces';
+import { toUnderScoreKeys } from './stringFunctions';
 
-function canjsonParse(str: string): boolean {
-  try {
-    JSON.parse(str);
-  } catch (error) {
-    return false;
-  }
-  return true;
+function isAxiosError(candidate: any): candidate is AxiosError {
+  return candidate.isAxiosError === true;
 }
 
-export async function request(r: IRequest): Promise<IResponse | IErrorResponse> {
-  const options: http.RequestOptions = {
-    method: r.method,
-    headers: { ...r.headers },
-    timeout: r.timeout || 1000,
-    path: r.path,
+export async function request(req: IRequest): Promise<IResponse|IErrorResponse> {
+  const payload: RequestConfig = {
+    method: req.method,
+    baseURL: req.url,
+    url: req.path,
+    headers: { ...req.headers },
+    timeout: req.timeout,
   };
-  return new Promise((resolve, reject) => {
-    const req = http.request(r.url, options, (res) => {
-      if (res.statusCode! > 299) {
-        resolve({
-          code: res.statusCode!,
-          message: res.statusMessage!,
-        });
-      }
-      const body: Buffer[] = [];
-      res.on('data', (chunk) => body.push(chunk));
-      res.on('end', () => {
-        const data = Buffer.concat(body).toString();
-        const payload: IResponse = {
-          code: res.statusCode!,
-          data: (canjsonParse(data)) ? JSON.parse(data) : null,
-        };
-        return resolve(payload);
-      });
-    });
-    req.on('error', (err) => {
-      reject(err);
-    });
-    req.on('timeout', () => {
-      req.destroy();
-      resolve({
-        code: 408,
-        message: 'Request Timeout',
-      });
-    });
-    if (r.method === 'post' || r.method === 'put') {
-      const payload = JSON.stringify(r.data);
-      req.write(payload);
+
+  if (['post', 'put', 'patch'].includes(req.method)) {
+    payload.data = toUnderScoreKeys(req.body);
+  }
+  try {
+    const { status, data } = await axios.request(payload);
+    return {
+      status,
+      data,
+    } as IResponse;
+  } catch (error: any) {
+    if (error.message.includes('timeout')) {
+      return {
+        status: 408,
+        message: error.message,
+      } as IErrorResponse;
     }
-    req.end();
-  });
+    if (isAxiosError(error)) {
+      return {
+        status: error.response!.status,
+        message: error.response!.statusText,
+      } as IErrorResponse;
+    }
+    return {
+      status: 500,
+      message: error.message,
+    } as IErrorResponse;
+  }
 }
