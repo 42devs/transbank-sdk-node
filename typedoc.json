@@ -3,5 +3,6 @@
   "entryPoints": ["src/"],
   "out": "docs",
   "sort": "static-first",
+  "githubPages": true,
   "exclude": "src/utils/**/*.ts"
 }
