@@ -3,7 +3,7 @@ import axios, { AxiosError, AxiosRequestConfig as RequestConfig } from 'axios';
 import {
   IRequest, IResponse, IErrorResponse,
 } from '~/interfaces';
-import { toUnderScoreKeys } from './stringFunctions';
+import { toCamelCaseKeys, toUnderScoreKeys } from './stringFunctions';
 
 function isAxiosError(candidate: any): candidate is AxiosError {
   return candidate.isAxiosError === true;
@@ -22,10 +22,11 @@ export async function request(req: IRequest): Promise<IResponse|IErrorResponse> 
     payload.data = toUnderScoreKeys(req.body);
   }
   try {
-    const { status, data } = await axios.request(payload);
+    const { status, data } = await axios
+      .request(payload);
     return {
       status,
-      data,
+      data: toCamelCaseKeys(data),
     } as IResponse;
   } catch (error: any) {
     if (error.message.includes('timeout')) {
