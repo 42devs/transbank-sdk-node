@@ -3,13 +3,14 @@
   "version": "2.0.0",
   "description": "Awesome package to use REST methods on transbank products",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "directories": {
     "src": "src",
     "test": "test",
     "dist": "dist"
   },
   "scripts": {
-    "build": "rimraf ./dist && tsx",
+    "build": "rimraf ./dist && tsc",
     "prepare": "husky install",
     "test": "NODE_ENV=test jest",
     "doc": "typedoc",
@@ -18,7 +19,7 @@
     "changelog": "auto-changelog -p"
   },
   "files": [
-    "lib",
+    "dist",
     "README.md"
   ],
   "repository": {
