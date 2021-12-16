@@ -6,7 +6,7 @@ export function getEnvironmentVars(): void {
       process.env.TBK_ENV = 'integration';
     }
   } else if (['integration', 'production'].indexOf(process.env.TBK_ENV) === -1) {
-    process.env.TBK_ENV = 'integracion';
+    process.env.TBK_ENV = 'integration';
   }
 }
 

@@ -1,4 +1,8 @@
 {
-  "entryPoints": ["src/index.ts"],
-  "out": "docs"
+  "entryPointStrategy": "expand",
+  "entryPoints": ["src/"],
+  "out": "docs",
+  "sort": "static-first",
+  "githubPages": false,
+  "exclude": "src/utils/**/*.ts"
 }
