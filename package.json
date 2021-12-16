@@ -1,6 +1,6 @@
 {
   "name": "transbank-sdk-node",
-  "version": "0.0.0-development",
+  "version": "2.0.1",
   "description": "Awesome package to use REST methods on transbank products",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,6 +14,7 @@
     "prepare": "husky install",
     "test": "NODE_ENV=test jest",
     "doc": "typedoc",
+    "ci": "npm instal && npm run build",
     "lint": "eslint ./ --ext .ts --ignore-path .gitignore",
     "lint:fix": "eslint ./ --ext .ts --ignore-path .gitignore --fix",
     "changelog": "auto-changelog -p",
