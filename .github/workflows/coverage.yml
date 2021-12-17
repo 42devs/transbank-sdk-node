@@ -1,0 +1,36 @@
+name: coverage
+on:
+  push:
+    branches:
+      - main
+      - develop
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: install
+        run: yarn install
+      - name: test
+        run: yarn test
+  coverage:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: install
+        run: yarn install
+      - name: codecov
+        uses: codecov/codecov-action@v2
+        with:
+              token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+              verbose: true
