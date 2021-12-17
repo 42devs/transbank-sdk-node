@@ -3,6 +3,7 @@ import { ITransactionCreateResponse } from './transactionCreate';
 import { ITransactionStatusResponse } from './transactionStatus';
 import { ITransactionRefundResponse } from './transactionRefund';
 import { ITransactionCaptureResponse } from './transactionCapture';
+import { IMallTransactionCreateResponse } from './mallTransactionCreate';
 
 export interface IResponse {
   status: number;
@@ -11,5 +12,6 @@ export interface IResponse {
     | ITransactionCommitResponse
     | ITransactionStatusResponse
     | ITransactionRefundResponse
-    | ITransactionCaptureResponse;
+    | ITransactionCaptureResponse
+    | IMallTransactionCreateResponse;
 }
