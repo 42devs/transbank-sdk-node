@@ -2,9 +2,9 @@ Transbank SDK nodejs
 ---
 [![NPM](https://nodei.co/npm/transbank-sdk-node.png)](https://nodei.co/npm/transbank-sdk-node/)
 
-![size](https://img.shields.io/github/languages/code-size/themakunga/transbank-sdk-node)
+![size](https://img.shields.io/github/languages/code-size/42devs/transbank-sdk-node)
 ![npm](https://img.shields.io/npm/dw/transbank-sdk-node)
-
+[![codecov](https://codecov.io/gh/42devs/transbank-sdk-node/branch/main/graph/badge.svg?token=8V1GTUKR2E)](https://codecov.io/gh/42devs/transbank-sdk-node)
 
 # Why this?
 
