@@ -1,4 +1,4 @@
-interface ICardDetails {
+export interface ICardDetails {
   cardNumber: number;
 }
 
