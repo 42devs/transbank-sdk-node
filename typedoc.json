@@ -3,5 +3,5 @@
   "entryPoints": ["src/"],
   "out": "docs",
   "sort": "static-first",
-  "exclude": "src/utils/**/*.ts"
+  "githubPages": false
 }
