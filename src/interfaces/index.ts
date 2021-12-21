@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { IRequest } from './Request';
 import { IResponse } from './Response';
 import { IHeaders } from './Headers';
@@ -8,6 +9,10 @@ import { ITransactionCommitResponse } from './Response/transactionCommit';
 import { ITransactionStatusResponse } from './Response/transactionStatus';
 import { ITransactionRefundResponse } from './Response/transactionRefund';
 import { ITransactionCaptureResponse } from './Response/transactionCapture';
+import { IMallTransactionCreateResponse } from './Response/mallTransactionCreate';
+import { IMallTransactionCommitResponse } from './Response/mallTransactionCommit';
+import { IMallTransactionStatusResponse } from './Response/mallTransactionStatus';
+import { IMallTransactionRefundResponse } from './Response/mallTransactionRefund';
 
 export {
   IRequest,
@@ -20,4 +25,8 @@ export {
   ITransactionStatusResponse,
   ITransactionRefundResponse,
   ITransactionCaptureResponse,
+  IMallTransactionCreateResponse,
+  IMallTransactionCommitResponse,
+  IMallTransactionStatusResponse,
+  IMallTransactionRefundResponse,
 };

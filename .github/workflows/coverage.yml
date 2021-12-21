@@ -1,36 +1,56 @@
-name: coverage
+name: Running Code Coverage
+
 on:
   push:
     branches:
+      - main`
+  pull_request:
+    branches:
       - main
-      - develop
+
 jobs:
-  test:
-    runs-on: ubuntu-20.04
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12, 13, 14, 15, 15]
+
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16.x
-      - name: install
-        run: yarn install
-      - name: test
-        run: yarn test
-  coverage:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16.x
-      - name: install
-        run: yarn install
-      - name: codecov
-        uses: codecov/codecov-action@v2
-        with:
-              token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-              verbose: true
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Get yarn cache directory path 🛠
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: Cache node_modules 📦
+      uses: actions/cache@v2.1.4
+      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: Install dependencies
+      run: npm install
+      continue-on-error: true
+
+    - name: Run tests
+      run: npm run test
+      continue-on-error: true
+
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}

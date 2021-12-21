@@ -105,7 +105,7 @@ export async function getStatus(
   try {
     const payload: IRequest = {
       url: getBaseURL(),
-      method: 'put',
+      method: 'get',
       path: `/rswebpaytransaction/api/webpay/v1.2/transactions/${token}`,
       headers: {
         'Tbk-Api-Key-Id': options.commerceCode,
