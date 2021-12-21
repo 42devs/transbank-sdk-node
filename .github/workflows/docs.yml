@@ -1,11 +1,14 @@
-name: npm-publish
+name: generate docs
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 jobs:
-  release:
-    runs-on: ubuntu-20.04
+  update-docs:
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -27,10 +30,13 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: install
         run: yarn install
-      - name: build
-        run: yarn run build
-      - name: release
-        run: npx semantic-release
+      - name: generate docs
+        run: yarn doc
+      - name: push to doc branch
+        uses: s0/git-publish-subdir-action@develop
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          REPO: self
+          BRANCH: docs
+          FOLDER: docs
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          MESSAGE: "docs: ({sha}) {msg}"

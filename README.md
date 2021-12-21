@@ -33,12 +33,12 @@ you can read all the methods in the [docs](https://42devs.github.io/transbank-sd
 
 ## Roadmap
 
-- [ ] Normal Transaction
+- [x] Normal Transaction
   - [x] Create Transation
   - [x] Commit Transaction
   - [x] Transaction Status
-  - [ ] Reverse or Cancel Transaction
-  - [ ] Capture Transaction
+  - [x] Reverse or Cancel Transaction
+  - [x] Capture Transaction
 - [ ] Mall Transaction
   - [ ] Create Mall Transation
   - [ ] Commit Mall Transaction

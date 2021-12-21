@@ -4,5 +4,4 @@
 npm run lint
 npm run changelog
 git add CHANGELOG.md
-npm run doc
-git add docs/
+
