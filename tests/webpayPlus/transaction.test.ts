@@ -6,7 +6,8 @@ import {
   ITransactionRefundResponse,
   ITransactionCaptureResponse,
 } from '../../src/interfaces';
-import * as Transaction from '../../src/modules/webpayPlus/transaction';
+import { Transaction } from '../../src';
+
 import { makeId } from '../helper';
 
 const status: ITransactionStatusResponse | ITransactionCommitResponse = {

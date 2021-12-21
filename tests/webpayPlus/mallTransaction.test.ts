@@ -1,5 +1,5 @@
 import { makeId } from '../helper';
-import * as MallTransaction from '../../src/modules/webpayPlus/mallTransaction';
+import { MallTransaction } from '../../src';
 import { IMallTransactionCreateResponse, IOptions } from '../../src/interfaces';
 import { IDetailsMallTransaction } from '../../src/interfaces/Request/mallTransactionCreate';
 
