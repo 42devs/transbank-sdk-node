@@ -9,10 +9,8 @@ updates:
   open-pull-requests-limit: 10
   reviewers:
     - themakunga
-    - hugazo
   assignees:
     - themakunga
-    - hugazo
   commit-message:
     prefix: fix
     prefix-development: chore
@@ -26,10 +24,8 @@ updates:
   open-pull-requests-limit: 10
   reviewers:
     - themakunga
-    - hugazo
   assignees:
     - themakunga
-    - hugazo
   commit-message:
     prefix: fix
     prefix-development: chore

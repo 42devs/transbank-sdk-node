@@ -2,6 +2,7 @@ import {
   IErrorResponse,
   IMallTransactionCommitResponse,
   IMallTransactionCreateResponse,
+  IMallTransactionRefundResponse,
   IMallTransactionStatusResponse,
   IOptions,
   IRequest,
@@ -44,11 +45,8 @@ export async function create(
         details,
       },
     };
-    const { status, data } = await request(payload) as IResponse;
-    if (status >= 200 && status <= 299) {
-      return data as IMallTransactionCreateResponse;
-    }
-    throw new Error('could not complete operation');
+    const { data } = await request(payload) as IResponse;
+    return data as IMallTransactionCreateResponse;
   } catch (error: any) {
     return {
       status: error.status || 500,
@@ -79,11 +77,8 @@ export async function commit(
       },
     };
 
-    const { status, data } = await request(payload) as IResponse;
-    if (status >= 200 && status <= 299) {
-      return data as IMallTransactionCommitResponse;
-    }
-    throw new Error('could not complete operation');
+    const { data } = await request(payload) as IResponse;
+    return data as IMallTransactionCommitResponse;
   } catch (error: any) {
     return {
       status: error.status || 500,
@@ -114,11 +109,8 @@ export async function getStatus(
       },
     };
 
-    const { status, data } = await request(payload) as IResponse;
-    if (status >= 200 && status <= 299) {
-      return data as IMallTransactionStatusResponse;
-    }
-    throw new Error('could not complete operation');
+    const { data } = await request(payload) as IResponse;
+    return data as IMallTransactionStatusResponse;
   } catch (error: any) {
     return {
       status: error.status || 500,
@@ -127,4 +119,44 @@ export async function getStatus(
   }
 }
 
-// export async function refund(payload: )
+/**
+ *
+ * @param token
+ * @param commerceCode
+ * @param buyOrder
+ * @param amount
+ * @param options
+ * @returns IMallTransactionRefundResponse | IErrorResponse
+ */
+export async function refund(
+  token: string,
+  commerceCode: string,
+  buyOrder: string,
+  amount: number,
+  options: IOptions,
+): Promise<IMallTransactionRefundResponse | IErrorResponse> {
+  try {
+    const payload: IRequest = {
+      url: getBaseURL(),
+      method: 'post',
+      path: `/rswebpaytransaction/api/webpay/v1.2/transactions/${token}/refunds`,
+      headers: {
+        'Tbk-Api-Key-Id': options.commerceCode,
+        'Content-Type': 'application/json',
+        'Tbk-Api-Key-Secret': options.apiKey,
+      },
+      body: {
+        commerceCode,
+        buyOrder,
+        amount,
+      },
+    };
+    const { data } = await request(payload) as IResponse;
+    return data as IMallTransactionRefundResponse;
+  } catch (error: any) {
+    return {
+      status: error.status || 500,
+      message: error.message as string,
+    } as IErrorResponse;
+  }
+}
