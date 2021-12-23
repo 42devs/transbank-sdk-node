@@ -24,7 +24,7 @@ jobs:
         fetch-depth: 2
 
     - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2.5.0
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -33,7 +33,7 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
 
     - name: Cache node_modules 📦
-      uses: actions/cache@v2.1.4
+      uses: actions/cache@v2.1.7
       id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -51,6 +51,6 @@ jobs:
 
 
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
+      uses: codecov/codecov-action@v2.1.0
       with:
         token: ${{ secrets.CODECOV_TOKEN }}

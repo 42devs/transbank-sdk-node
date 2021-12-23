@@ -5,29 +5,18 @@ import {
   ITransactionCreateResponse,
   ITransactionRefundResponse,
   ITransactionCaptureResponse,
+  IErrorResponse,
 } from '../../src/interfaces';
-import { Transaction } from '../../src';
+import {
+  create, commit, getStatus, refund, capture,
+} from '../../src/modules/webpayPlus/transaction';
+import { request } from '../../src/utils/request';
 
 import { makeId } from '../helper';
 
-const status: ITransactionStatusResponse | ITransactionCommitResponse = {
-  vci: 'TSY',
-  amount: 1000,
-  status: 'AUTHORIZED',
-  buyOrder: makeId(6),
-  sessionId: makeId(10),
-  cardDetail: {
-    cardNumber: 1234,
-  },
-  accountingDate: '1221',
-  transactionDate: new Date(),
-  authorizationCode: '1313',
-  paymentTypeCode: 'VD',
-  responseCode: 0,
-  installmentsAmount: 1000,
-  installmentsNumber: 1,
-  balance: 0,
-};
+jest.mock('../../src/utils/request', () => ({
+  request: jest.fn(),
+}));
 
 const options: IOptions = {
   commerceCode: '597055555532',
@@ -35,128 +24,207 @@ const options: IOptions = {
   environment: 'test',
 };
 
-const token = makeId(64);
-const url = 'https://webpay3gint.transbank.cl/webpayserver/initTransaction';
+let token: string;
+let buyOrder: string;
+let authorizationCode: string;
+let url: string;
+let sessionId: string;
+let returnUrl: string;
+let amount: 1000;
+let status: ITransactionStatusResponse | ITransactionCommitResponse;
+let created: ITransactionCreateResponse;
+let reversed: ITransactionRefundResponse;
+let nullified: ITransactionRefundResponse;
+let captured: ITransactionCaptureResponse;
+let error: IErrorResponse;
 
-const created: ITransactionCreateResponse = {
-  token,
-  url,
+const setValues = () => {
+  token = makeId(64);
+  buyOrder = makeId(6);
+  authorizationCode = makeId(20);
+  url = 'https://webpay3gint.transbank.cl/webpayserver/initTransaction';
+  status = {
+    vci: 'TSY',
+    amount: 1000,
+    status: 'AUTHORIZED',
+    buyOrder: makeId(6),
+    sessionId: makeId(10),
+    cardDetail: {
+      cardNumber: 1234,
+    },
+    accountingDate: '1221',
+    transactionDate: new Date(),
+    authorizationCode: '1313',
+    paymentTypeCode: 'VD',
+    responseCode: 0,
+    installmentsAmount: 1000,
+    installmentsNumber: 1,
+    balance: 0,
+  };
+
+  created = {
+    token,
+    url,
+  };
+
+  nullified = {
+    type: 'NULLIFIED',
+    authorizationCode: makeId(6),
+    authorizationDate: new Date(),
+    nullifiedAmount: 1000.00,
+    balance: 0.00,
+    responseCode: 0,
+  };
+
+  reversed = {
+    type: 'REVERSED',
+  };
+
+  captured = {
+    token: makeId(64),
+    authorizationCode: makeId(6),
+    authorizationDate: new Date(),
+    capturedAmount: 1000,
+    responseCode: 0,
+  };
+
+  error = {
+    status: 500,
+  };
 };
-
-const refund: ITransactionRefundResponse = {
-  type: 'NULLIFIED',
-  authorizationCode: makeId(6),
-  authorizationDate: new Date(),
-  nullifiedAmount: 1000.00,
-  balance: 0.00,
-  responseCode: 0,
-};
-
-const nullify: ITransactionRefundResponse = {
-  type: 'REVERSED',
-};
-
-const capture: ITransactionCaptureResponse = {
-  token: makeId(64),
-  authorizationCode: makeId(6),
-  authorizationDate: new Date(),
-  capturedAmount: 1000,
-  responseCode: 0,
-};
-const buyOrder: string = makeId(6);
-const authorizationCode: string = makeId(20);
-
-jest.mock('../../src/modules/webpayPlus/transaction', () => ({
-  create: jest.fn(),
-  commit: jest.fn(),
-  getStatus: jest.fn(),
-  refund: jest.fn(),
-  capture: jest.fn(),
-}));
+const mock = (request as jest.MockedFunction<typeof request>);
 
 describe('Normal Transaction', () => {
   describe('Create Transaction', () => {
-    const spy = jest.spyOn(Transaction, 'create')
-      .mockImplementation(async () => created as ITransactionCreateResponse);
+    beforeEach(() => {
+      setValues();
+      mock.mockResolvedValueOnce({ status: 200, data: created });
+    });
     afterAll(() => {
-      spy.mockRestore();
+      mock.mockRestore();
     });
     it('OK - create transaction', async () => {
-      const sessionId = makeId(10);
-      const amount = 1000;
-      const returnUrl = 'http://localhost:3000/transaction/return';
-      const response = await Transaction.create(buyOrder, sessionId, amount, returnUrl, options);
-      expect(Transaction.create).toBeCalledTimes(1);
-      expect(Transaction.create).toBeCalledWith(buyOrder, sessionId, amount, returnUrl, options);
+      const response = await create(buyOrder, sessionId, amount, returnUrl, options);
+      expect(request).toBeCalledTimes(1);
       expect(response).toBeDefined();
+      expect(response).toBe(created);
     });
   });
   describe('Commit Transaction', () => {
-    const spy = jest.spyOn(Transaction, 'commit')
-      .mockImplementation(async () => status as ITransactionCommitResponse);
-    afterAll(() => {
-      spy.mockRestore();
+    beforeEach(() => {
+      setValues();
+      mock.mockResolvedValueOnce({ status: 200, data: status });
     });
-
+    afterEach(() => {
+      mock.mockRestore();
+    });
     it('OK commit trasaction', async () => {
-      const response = await Transaction.commit(token, options);
+      const response = await commit(token, options);
 
-      expect(Transaction.commit).toBeCalledTimes(1);
-      expect(Transaction.commit).toBeCalledWith(token, options);
+      expect(request).toBeCalledTimes(1);
       expect(response).toBeDefined();
+      expect(response).toBe(status);
     });
   });
   describe('getStatus Transaction', () => {
-    const spy = jest.spyOn(Transaction, 'getStatus')
-      .mockImplementation(async () => status as ITransactionStatusResponse);
-    afterAll(() => {
-      spy.mockRestore();
+    beforeEach(() => {
+      setValues();
+      mock.mockResolvedValueOnce({ status: 200, data: status });
     });
-    it('OK getStatus trasaction', async () => {
-      const response = await Transaction.getStatus(token, options);
+    afterEach(() => {
+      mock.mockRestore();
+    });
 
-      expect(Transaction.getStatus).toBeCalledTimes(1);
-      expect(Transaction.getStatus).toBeCalledWith(token, options);
+    it('OK getStatus trasaction', async () => {
+      const response = await getStatus(token, options);
+
+      expect(request).toBeCalledTimes(1);
       expect(response).toBeDefined();
+      expect(response).toBe(status);
     });
   });
   describe('Refund Transaction', () => {
-    const spy = jest.spyOn(Transaction, 'refund')
-      .mockImplementation(async () => refund as ITransactionRefundResponse);
-    afterAll(() => {
-      spy.mockRestore();
+    beforeEach(() => {
+      setValues();
+      mock.mockResolvedValueOnce({ status: 200, data: reversed });
+    });
+    afterEach(() => {
+      mock.mockRestore();
     });
     it('OK reverse transaction', async () => {
-      const response = Transaction.refund(token, 1000.00, options);
-      expect(Transaction.refund).toBeCalledTimes(1);
-      expect(Transaction.refund).toBeCalledWith(token, 1000.00, options);
+      const response = await refund(token, 1000.00, options);
+      expect(request).toBeCalledTimes(1);
       expect(response).toBeDefined();
+      expect(response).toBe(reversed);
+    });
+  });
+  describe('Nullify Transaction', () => {
+    beforeEach(() => {
+      setValues();
+      mock.mockResolvedValueOnce({ status: 200, data: nullified });
+    });
+    afterEach(() => {
+      mock.mockRestore();
     });
     it('OK nullified transaction', async () => {
-      spy.mockImplementation(async () => nullify as ITransactionRefundResponse);
-      const response = Transaction.refund(token, 1000.00, options);
-      expect(Transaction.refund).toBeCalledTimes(1);
-      expect(Transaction.refund).toBeCalledWith(token, 1000.00, options);
+      const response = await refund(token, 100.00, options);
+      expect(request).toBeCalledTimes(1);
       expect(response).toBeDefined();
+      expect(response).toBe(nullified);
     });
   });
   describe('Capture Transaction', () => {
-    const spy = jest.spyOn(Transaction, 'capture')
-      .mockImplementation(async () => capture as ITransactionCaptureResponse);
-    afterAll(() => {
-      spy.mockRestore();
+    beforeEach(() => {
+      setValues();
+      mock.mockResolvedValueOnce({ status: 200, data: captured });
     });
+    afterEach(() => {
+      mock.mockRestore();
+    });
+
     it('OK capture amount', async () => {
-      const response = Transaction.capture(token, buyOrder, authorizationCode, 1000, options);
-      expect(Transaction.capture).toBeCalledTimes(1);
-      expect(Transaction.capture).toBeCalledWith(
-        token,
-        buyOrder,
-        authorizationCode,
-        1000,
-        options,
-      );
+      const response = await capture(token, buyOrder, authorizationCode, 1000, options);
+      expect(request).toBeCalledTimes(1);
       expect(response).toBeDefined();
+      expect(response).toBe(captured);
+    });
+  });
+  describe('Error functions', () => {
+    beforeEach(() => {
+      mock.mockRejectedValueOnce(error);
+    });
+    afterEach(() => {
+      mock.mockRestore();
+    });
+    it('Can not create request', async () => {
+      const response = await create(buyOrder, sessionId, amount, returnUrl, options);
+      expect(request).toBeCalledTimes(1);
+      expect(response).toBeDefined();
+      expect(response).toHaveProperty('message');
+    });
+    it('Can not commit request', async () => {
+      const response = await commit(token, options);
+      expect(request).toBeCalledTimes(1);
+      expect(response).toBeDefined();
+      expect(response).toHaveProperty('message');
+    });
+    it('Can not get status request', async () => {
+      const response = await getStatus(token, options);
+      expect(request).toBeCalledTimes(1);
+      expect(response).toBeDefined();
+      expect(response).toHaveProperty('message');
+    });
+    it('Can not reverse transaction', async () => {
+      const response = await refund(token, 1000.00, options);
+      expect(request).toBeCalledTimes(1);
+      expect(response).toBeDefined();
+      expect(response).toHaveProperty('message');
+    });
+    it('Can not capture request', async () => {
+      const response = await capture(token, buyOrder, authorizationCode, 1000, options);
+      expect(request).toBeCalledTimes(1);
+      expect(response).toBeDefined();
+      expect(response).toHaveProperty('message');
     });
   });
 });
