@@ -1,3 +1,3 @@
-import { ITransactionRefundResponse } from './transactionRefund';
+import { ITransactionRefundResponse } from '../transaction';
 
 export interface IMallTransactionRefundResponse extends ITransactionRefundResponse {}

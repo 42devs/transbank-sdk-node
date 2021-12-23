@@ -1,12 +1,18 @@
-import { ITransactionCommitResponse } from './transactionCommit';
-import { ITransactionCreateResponse } from './transactionCreate';
-import { ITransactionStatusResponse } from './transactionStatus';
-import { ITransactionRefundResponse } from './transactionRefund';
-import { ITransactionCaptureResponse } from './transactionCapture';
-import { IMallTransactionCreateResponse } from './mallTransactionCreate';
-import { IMallTransactionCommitResponse } from './mallTransactionCommit';
-import { IMallTransactionStatusResponse } from './mallTransactionStatus';
-import { IMallTransactionRefundResponse } from './mallTransactionRefund';
+import {
+  ITransactionCreateResponse,
+  ITransactionRefundResponse,
+  ITransactionCaptureResponse,
+  ITransactionCommitResponse,
+  ITransactionStatusResponse,
+} from './transaction';
+
+import {
+  IMallTransactionCreateResponse,
+  IMallTransactionCommitResponse,
+  IMallTransactionStatusResponse,
+  IMallTransactionCaptureResponse,
+  IMallTransactionRefundResponse,
+} from './mallTransaction';
 
 export interface IResponse {
   status: number;
@@ -19,5 +25,6 @@ export interface IResponse {
     | IMallTransactionCreateResponse
     | IMallTransactionCommitResponse
     | IMallTransactionStatusResponse
-    | IMallTransactionRefundResponse;
+    | IMallTransactionRefundResponse
+    | IMallTransactionCaptureResponse;
 }

@@ -4,15 +4,20 @@ import { IResponse } from './Response';
 import { IHeaders } from './Headers';
 import { IOptions } from './Options';
 import { IErrorResponse } from './Error';
-import { ITransactionCreateResponse } from './Response/transactionCreate';
-import { ITransactionCommitResponse } from './Response/transactionCommit';
-import { ITransactionStatusResponse } from './Response/transactionStatus';
-import { ITransactionRefundResponse } from './Response/transactionRefund';
-import { ITransactionCaptureResponse } from './Response/transactionCapture';
-import { IMallTransactionCreateResponse } from './Response/mallTransactionCreate';
-import { IMallTransactionCommitResponse } from './Response/mallTransactionCommit';
-import { IMallTransactionStatusResponse } from './Response/mallTransactionStatus';
-import { IMallTransactionRefundResponse } from './Response/mallTransactionRefund';
+import {
+  ITransactionCreateResponse,
+  ITransactionCommitResponse,
+  ITransactionStatusResponse,
+  ITransactionRefundResponse,
+  ITransactionCaptureResponse,
+} from './Response/transaction';
+import {
+  IMallTransactionCreateResponse,
+  IMallTransactionCommitResponse,
+  IMallTransactionStatusResponse,
+  IMallTransactionRefundResponse,
+  IMallTransactionCaptureResponse,
+} from './Response/mallTransaction';
 
 export {
   IRequest,
@@ -29,4 +34,5 @@ export {
   IMallTransactionCommitResponse,
   IMallTransactionStatusResponse,
   IMallTransactionRefundResponse,
+  IMallTransactionCaptureResponse,
 };
