@@ -45,11 +45,8 @@ export async function create(
         returnUrl,
       },
     };
-    const { status, data } = await request(payload) as IResponse;
-    if (status >= 200 && status <= 299) {
-      return data as ITransactionCreateResponse;
-    }
-    throw new Error('could not complete operation');
+    const { data } = await request(payload) as IResponse;
+    return data as ITransactionCreateResponse;
   } catch (error: any) {
     return { status: error.status || 500, message: error.message as string } as IErrorResponse;
   }
@@ -78,11 +75,8 @@ export async function commit(
       },
     };
 
-    const { status, data } = await request(payload) as IResponse;
-    if (status >= 200 && status <= 299) {
-      return data as ITransactionCommitResponse;
-    }
-    throw new Error('could not complete operation');
+    const { data } = await request(payload) as IResponse;
+    return data as ITransactionCommitResponse;
   } catch (error: any) {
     return {
       status: error.status || 500,
@@ -114,11 +108,8 @@ export async function getStatus(
       },
     };
 
-    const { status, data } = await request(payload) as IResponse;
-    if (status >= 200 && status <= 299) {
-      return data as ITransactionStatusResponse;
-    }
-    throw new Error('could not complete operation');
+    const { data } = await request(payload) as IResponse;
+    return data as ITransactionStatusResponse;
   } catch (error: any) {
     return {
       status: error.status || 500,
@@ -154,11 +145,8 @@ export async function refund(
       },
     };
 
-    const { status, data } = await request(payload) as IResponse;
-    if (status >= 200 && status <= 299) {
-      return data as ITransactionRefundResponse;
-    }
-    throw new Error('could not complete operation');
+    const { data } = await request(payload) as IResponse;
+    return data as ITransactionRefundResponse;
   } catch (error: any) {
     return {
       status: error.status || 500,
@@ -167,6 +155,16 @@ export async function refund(
   }
 }
 
+/**
+ * capture transaction
+ *
+ * @param token
+ * @param buyOrder
+ * @param authorizationCode
+ * @param captureAmount
+ * @param options
+ * @returns ITransactionCaptureResponse | IErrorResponse
+ */
 export async function capture(
   token: string,
   buyOrder: string,
@@ -177,8 +175,8 @@ export async function capture(
   try {
     const payload: IRequest = {
       url: getBaseURL(),
-      method: 'post',
-      path: `/rswebpaytransaction/api/webpay/v1.2/transactions/${token}/refunds`,
+      method: 'put',
+      path: `/rswebpaytransaction/api/webpay/v1.2/transactions/${token}/capture`,
       headers: {
         'Tbk-Api-Key-Id': options.commerceCode,
         'Content-Type': 'application/json',
@@ -191,11 +189,8 @@ export async function capture(
       },
     };
 
-    const { status, data } = await request(payload) as IResponse;
-    if (status >= 200 && status <= 299) {
-      return data as ITransactionCaptureResponse;
-    }
-    throw new Error('could not complete operation');
+    const { data } = await request(payload) as IResponse;
+    return data as ITransactionCaptureResponse;
   } catch (error: any) {
     return {
       status: error.status || 500,
