@@ -1,5 +1,6 @@
 import {
   IErrorResponse,
+  IMallTransactionCaptureResponse,
   IMallTransactionCommitResponse,
   IMallTransactionCreateResponse,
   IMallTransactionRefundResponse,
@@ -153,6 +154,52 @@ export async function refund(
     };
     const { data } = await request(payload) as IResponse;
     return data as IMallTransactionRefundResponse;
+  } catch (error: any) {
+    return {
+      status: error.status || 500,
+      message: error.message as string,
+    } as IErrorResponse;
+  }
+}
+
+/**
+ *
+ * @param token
+ * @param commerceCode
+ * @param buyOrder
+ * @param authorizationCode
+ * @param captureAmount
+ * @param options
+ * @returns IMallTransactionCaptureResponse | IErrorResponse
+ */
+export async function capture(
+  token: string,
+  commerceCode: string,
+  buyOrder: string,
+  authorizationCode: string,
+  captureAmount: number,
+  options: IOptions,
+): Promise<IMallTransactionCaptureResponse | IErrorResponse> {
+  try {
+    const payload: IRequest = {
+      url: getBaseURL(),
+      method: 'put',
+      path: `/rswebpaytransaction/api/webpay/v1.2/transactions/${token}/capture`,
+      headers: {
+        'Tbk-Api-Key-Id': options.commerceCode,
+        'Content-Type': 'application/json',
+        'Tbk-Api-Key-Secret': options.apiKey,
+      },
+      body: {
+        commerceCode,
+        buyOrder,
+        authorizationCode,
+        captureAmount,
+      },
+    };
+
+    const { data } = await request(payload) as IResponse;
+    return data as IMallTransactionCaptureResponse;
   } catch (error: any) {
     return {
       status: error.status || 500,
