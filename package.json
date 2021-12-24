@@ -1,6 +1,6 @@
 {
   "name": "transbank-sdk-node",
-  "version": "3.0.0",
+  "version": "3.4.0",
   "description": "Awesome package to use REST methods on transbank products",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,8 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "repository": {
     "type": "git",
