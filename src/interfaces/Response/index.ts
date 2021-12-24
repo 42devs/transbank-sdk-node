@@ -16,8 +16,7 @@ import {
 
 export interface IResponse {
   status: number;
-  data: any
-    | ITransactionCreateResponse
+  data: ITransactionCreateResponse
     | ITransactionCommitResponse
     | ITransactionStatusResponse
     | ITransactionRefundResponse

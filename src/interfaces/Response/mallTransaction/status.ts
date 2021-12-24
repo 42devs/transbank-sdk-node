@@ -10,6 +10,7 @@ export interface IDetails {
   responseCode: 0 | -1 | -2 | -3 | -4 | -5;
   installmentsNumber: number;
   installmentsAmount: number;
+  commerceCode: string;
   buyOrder: string;
 }
 
