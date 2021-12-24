@@ -1,3 +1,3 @@
-import { ITransactionStatusResponse } from './transactionStatus';
+import { ITransactionStatusResponse } from './status';
 
 export interface ITransactionCommitResponse extends ITransactionStatusResponse {}

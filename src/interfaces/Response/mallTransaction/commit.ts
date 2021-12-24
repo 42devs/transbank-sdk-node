@@ -1,3 +1,3 @@
-import { IMallTransactionStatusResponse } from './mallTransactionStatus';
+import { IMallTransactionStatusResponse } from './status';
 
 export interface IMallTransactionCommitResponse extends IMallTransactionStatusResponse {}
