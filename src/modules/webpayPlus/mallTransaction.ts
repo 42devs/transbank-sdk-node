@@ -9,7 +9,7 @@ import {
   IRequest,
   IResponse,
 } from '~/interfaces';
-import { IDetailsMallTransaction } from '~/interfaces/Request/mallTransactionCreate';
+import { IDetailsMallTransaction } from '~/interfaces/Request/mallTransaction/create';
 import { getBaseURL } from '~/utils/params';
 import { request } from '~/utils/request';
 

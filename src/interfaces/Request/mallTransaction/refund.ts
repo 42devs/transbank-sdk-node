@@ -1,4 +1,4 @@
-import { ITransactionRefundRequest } from './transactionRefund';
+import { ITransactionRefundRequest } from '../transaction';
 
 export interface IMallTransactionReturnRequest extends ITransactionRefundRequest {
   commerceCode: string;

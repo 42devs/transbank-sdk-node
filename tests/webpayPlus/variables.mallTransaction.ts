@@ -8,7 +8,7 @@ import {
   IMallTransactionRefundResponse,
   IMallTransactionStatusResponse,
 } from '../../src/interfaces';
-import { IDetailsMallTransaction } from '../../src/interfaces/Request/mallTransactionCreate';
+import { IDetailsMallTransaction } from '../../src/interfaces/Request/mallTransaction/create';
 import { makeId } from '../helper';
 
 const options: IOptions = {

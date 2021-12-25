@@ -1,9 +1,13 @@
 import { IHeaders } from '~/interfaces/Headers';
-import { IMallTransactionCreateRequest } from './mallTransactionCreate';
-import { ITransactionCaptureRequest } from './transactionCapture';
-import { ITransactionCreateRequest } from './transactionCreate';
-import { ITransactionRefundRequest } from './transactionRefund';
-import { IMallTransactionReturnRequest } from './mallTransactionRefund';
+import {
+  ITransactionCreateRequest,
+  ITransactionCaptureRequest,
+  ITransactionRefundRequest,
+} from './transaction';
+import {
+  IMallTransactionReturnRequest,
+  IMallTransactionCreateRequest,
+} from './mallTransaction';
 
 export interface ITest {
   test: string;
