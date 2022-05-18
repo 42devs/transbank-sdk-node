@@ -53,7 +53,7 @@
   "homepage": "https://github.com/42devs/transbank-sdk-node#readme",
   "devDependencies": {
     "@commitlint/cli": "^17.0.0",
-    "@commitlint/config-conventional": "^16.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
     "@types/jest": "^27.0.3",
     "@types/node": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
